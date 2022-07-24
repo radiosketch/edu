@@ -58,14 +58,14 @@ nbk2.pack(fill='both', expand=True)
 
 # 1st Tab Elements
 ttk.Entry(nbk1).grid(column=1, row=0)
-ttk.Button(nbk1, text='Open File').grid(column=1, row=1)
+ttk.Button(nbk1, text='Open File', command=lambda: nbk.add(nbk2, text='Two')).grid(column=1, row=1)
+ttk.Button(nbk1, text='New Tab').grid(column=1, row=2)
 
 # 2nd tab Elements
 ttk.Button(nbk2, text='Quit', command=root.destroy).grid(column=2, row=0)
 
 # Combine Tabs into Notebook
 nbk.add(nbk1, text='One')
-nbk.add(nbk2, text='Two')
 
 # WORKING EXAMPLE USAGE OF EXISTING METHODS
 # WITHOUT GUI
