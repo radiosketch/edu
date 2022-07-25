@@ -5,7 +5,8 @@ from PIL import Image
 
 root = Tk()
 
-root.title("GIF Manipulator")
+root.title("GIF Editor")
+root.iconbitmap('assets/GIF_E_128.ico')
 root.geometry('400x300')
 
 
