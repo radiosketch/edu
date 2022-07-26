@@ -1,52 +1,17 @@
 from tkinter import *
 from tkinter import ttk
-from tkinter import filedialog as fd
-from PIL import Image
+
+from editor_window import GIFCanvas
+from dev_additions import GIFLabel
+
 
 root = Tk()
 
 root.title("GIF Editor")
 root.iconbitmap('assets/GIF_E_128.ico')
-root.geometry('400x300')
-
-
-def open_gif():
-	global im
-
-	import_filename = fd.askopenfilename()
-	if import_filename.endswith('.gif'):
-		im = Image.open(import_filename)
-	else:
-		raise ValueError('Incorrect filename to open a gif')
-
-	return im
-
-
-def vertical_flip(img: Image.Image):
-	return img.transpose(method=Image.Transpose.FLIP_TOP_BOTTOM)
-
-
-def horizontal_flip(img: Image.Image):
-	return img.transpose(method=Image.Transpose.FLIP_LEFT_RIGHT)
-
-
-def copy_paste_box_select(im: Image.Image, bbox: tuple, left_top: tuple, vflip=False, hflip=False):
-	frames = []
-	for i in range(im.n_frames):
-		im.seek(i)
-		frame = im.convert('RGBA').copy()
-		select = frame.crop(bbox)
-		if vflip:
-			select = vertical_flip(select)
-		if hflip:
-			select = horizontal_flip(select)
-		Image.Image.paste(frame, select, left_top)
-		frames.append(frame)
-	return frames
-
 
 # Tab Container (Notebook)
-nbk = ttk.Notebook(root, width=400, height=280)
+nbk = ttk.Notebook(root, width=400, height=400)
 nbk.pack(pady=10, expand=True)
 
 editor_nbk = ttk.Frame(nbk)
@@ -56,11 +21,14 @@ settings_nbk = ttk.Frame(nbk)
 settings_nbk.pack(fill='both', expand=True)
 
 # Editor Tab Elements
-editor_canvas = Canvas(editor_nbk, bg="black")
-editor_canvas.pack(fill='both', expand=True)
+canvas = GIFCanvas(editor_nbk, bg="black")
+canvas.set_paint(True)
+canvas.pack(fill='both', expand=True)
 
 # Settings Tab Elements
 ttk.Button(settings_nbk, text='Quit', command=root.destroy).grid(row=0, column=0)
+ttk.Button(settings_nbk, text='Open Test', command=canvas.open_gif).grid(row=0, column=1) # Test Button, TODO Remove This Later
+# GIFLabel(settings_nbk, image='assets/test.gif')
 
 # Add Editor Tab to the Notebook
 nbk.add(editor_nbk, text='Editor')
@@ -88,6 +56,7 @@ nbk.add(settings_nbk, text='Settings')
 
 # # Start with Tab #2 Hidden
 # nbk.hide(1)
+
 
 # WORKING EXAMPLE USAGE OF EXISTING METHODS
 # WITHOUT GUI
