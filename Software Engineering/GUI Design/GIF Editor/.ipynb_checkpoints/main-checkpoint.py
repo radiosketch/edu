@@ -1,58 +1,57 @@
-from tkinter import *
 from tkinter import ttk
-from tkinter import filedialog as fd
-from PIL import Image
+
+from window import TkEnhanced
+from editor_window import GIFCanvas
+from dev_additions import GIFLabel
+
+
+def set_move_offset(event):
+  
+
+
+def move_app(event):
+  root.geometry(f'+{event.x_root}+{event.y_root}')
+
 
 root = Tk()
 
-root.title("GIF Manipulator")
-root.geometry('400x300')
+root.title("GIF Editor")
+root.geometry('+300+300')
+root.iconbitmap('assets/GIF_E_128.ico')
+root.overrideredirect(True)
 
+# Custom Title Bar
+title_bar = Frame(root, bg='white', bd=1)
+title_bar.pack(expand=True, fill=X)
 
-def open_gif():
-	global im
+title_label = Label(title_bar, text="GIF Editor")
+title_label.pack(side=LEFT, pady=4)
 
-	import_filename = fd.askopenfilename()
-	if import_filename.endswith('.gif'):
-		im = Image.open(import_filename)
-	else:
-		raise ValueError('Incorrect filename to open a gif')
-
-	return im
-
-
-def vertical_flip(img: Image.Image):
-	return img.transpose(method=Image.Transpose.FLIP_TOP_BOTTOM)
-
-
-def horizontal_flip(img: Image.Image):
-	return img.transpose(method=Image.Transpose.FLIP_LEFT_RIGHT)
-
-
-def copy_paste_box_select(im: Image.Image, bbox: tuple, left_top: tuple, vflip=False, hflip=False):
-	frames = []
-	for i in range(im.n_frames):
-		im.seek(i)
-		frame = im.convert('RGBA').copy()
-		select = frame.crop(bbox)
-		if vflip:
-			select = vertical_flip(select)
-		if hflip:
-			select = horizontal_flip(select)
-		Image.Image.paste(frame, select, left_top)
-		frames.append(frame)
-	return frames
-
+title_bar.bind('<B1-Motion>', move_app)
+title_bar.bind('<1>', set_move_offset)
 
 # Tab Container (Notebook)
-nbk = ttk.Notebook(root, width=400, height=280)
+nbk = ttk.Notebook(root, width=400, height=400)
 nbk.pack(pady=10, expand=True)
 
 editor_nbk = ttk.Frame(nbk)
 editor_nbk.pack(fill='both', expand=True)
 
-# Editor Tab Elements
+settings_nbk = ttk.Frame(nbk)
+settings_nbk.pack(fill='both', expand=True)
 
+# Editor Tab Elements
+canvas = GIFCanvas(editor_nbk, bg="black")
+canvas.set_paint(True)
+canvas.pack(fill='both', expand=True)
+
+# Settings Tab Elements
+ttk.Button(settings_nbk, text='Quit', command=root.destroy).grid(row=0, column=0)
+# GIFLabel(settings_nbk, image='assets/test.gif')
+
+# Add Editor Tab to the Notebook
+nbk.add(editor_nbk, text='Editor')
+nbk.add(settings_nbk, text='Settings')
 
 # # 1st Tab Container
 # nbk1 = ttk.Frame(nbk)
@@ -76,6 +75,7 @@ editor_nbk.pack(fill='both', expand=True)
 
 # # Start with Tab #2 Hidden
 # nbk.hide(1)
+
 
 # WORKING EXAMPLE USAGE OF EXISTING METHODS
 # WITHOUT GUI

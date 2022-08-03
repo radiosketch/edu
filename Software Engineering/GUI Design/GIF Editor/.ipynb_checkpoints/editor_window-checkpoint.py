@@ -1,7 +1,7 @@
 import math
 from tkinter import *
 from tkinter import filedialog as fd
-from PIL import Image, ImageTk
+from PIL import Image
 
 
 class GIFCanvas(Canvas):
@@ -41,16 +41,7 @@ class GIFCanvas(Canvas):
         Returns:
             PIL.Image: A transparent image with the same dimensions as the canvas
         """
-        return Image.new(
-            'RGBA',
-            (self.winfo_width(), self.winfo_height())
-            )
-
-    def update_layer(self, index):
-        pass
-
-    def set_layer_select(self, index):
-        pass
+        return Image.new('RGBA', (self.winfo_width(), self.winfo_height()))
 
     def set_paint(self, enable: bool):
         """

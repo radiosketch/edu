@@ -1,14 +1,27 @@
 from tkinter import *
 from tkinter import ttk
 
+from window import TkEnhanced
 from editor_window import GIFCanvas
 from dev_additions import GIFLabel
 
 
-root = Tk()
+root = TkEnhanced()
 
 root.title("GIF Editor")
+root.geometry('+300+300')
 root.iconbitmap('assets/GIF_E_128.ico')
+root.overrideredirect(True)
+
+# Custom Title Bar
+title_bar = Frame(root, bg='white', bd=1)
+title_bar.pack(expand=True, fill=X)
+
+title_label = Label(title_bar, text="GIF Editor")
+title_label.pack(side=LEFT, pady=4)
+
+title_bar.bind('<B1-Motion>', root.move_app)
+title_bar.bind('<1>', root.set_move_offset)
 
 # Tab Container (Notebook)
 nbk = ttk.Notebook(root, width=400, height=400)
@@ -22,12 +35,11 @@ settings_nbk.pack(fill='both', expand=True)
 
 # Editor Tab Elements
 canvas = GIFCanvas(editor_nbk, bg="black")
-canvas.set_paint(True)
+canvas.set_paint(True) # TODO Remove this once toolbar is implemented
 canvas.pack(fill='both', expand=True)
 
 # Settings Tab Elements
 ttk.Button(settings_nbk, text='Quit', command=root.destroy).grid(row=0, column=0)
-ttk.Button(settings_nbk, text='Open Test', command=canvas.open_gif).grid(row=0, column=1) # Test Button, TODO Remove This Later
 # GIFLabel(settings_nbk, image='assets/test.gif')
 
 # Add Editor Tab to the Notebook
