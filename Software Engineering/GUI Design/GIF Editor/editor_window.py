@@ -27,6 +27,13 @@ class GIFCanvas(Canvas):
             'previous position': None # For interpolating between positions
         }
 
+        # Rectangle Select Configs and Data
+        self.rect_sel_info = {
+            'events': ['<B1-Motion>', '<1>'],
+            'points': None, # (x1, y1, x2, y2)
+            'enabled': False,
+        }
+
     def open_gif(self):
         import_filename = fd.askopenfilename()
         if import_filename.endswith('.gif'):

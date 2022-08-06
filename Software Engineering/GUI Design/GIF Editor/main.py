@@ -20,8 +20,18 @@ title_bar.pack(expand=True, fill=X)
 title_label = Label(title_bar, text="GIF Editor")
 title_label.pack(side=LEFT, pady=4)
 
+exit_button = Button(title_bar, bg='red', command=root.destroy)
+exit_button.pack(side=RIGHT, pady=4, padx=4)
+
+window_button = Button(title_bar, bg='green', command=root.toggle_windowed)
+window_button.pack(side=RIGHT, pady=4, padx=4)
+
+minimize_button = Button(title_bar, bg='blue', command=root.minimize)
+minimize_button.pack(side=RIGHT, pady=4, padx=4)
+
 title_bar.bind('<B1-Motion>', root.move_app)
 title_bar.bind('<1>', root.set_move_offset)
+title_bar.bind('<Map>', root.frame_mapped)
 
 # Tab Container (Notebook)
 nbk = ttk.Notebook(root, width=400, height=400)
@@ -34,6 +44,8 @@ settings_nbk = ttk.Frame(nbk)
 settings_nbk.pack(fill='both', expand=True)
 
 # Editor Tab Elements
+toolbar = Frame(editor_nbk, width=50, bg='red')
+toolbar.pack(fill='both', expand=True, side=LEFT)
 canvas = GIFCanvas(editor_nbk, bg="black")
 canvas.set_paint(True) # TODO Remove this once toolbar is implemented
 canvas.pack(fill='both', expand=True)
