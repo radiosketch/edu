@@ -48,5 +48,8 @@ class TkEnhanced(Tk):
 
 			self.geometry(f'{screen_width}x{screen_height}+0+0')
 			self.windowed = True
+			print(self.window_size, self.window_position, self.windowed)
 		else:
-			self.geometry(f'{self.window_size[0]}x{self.window_size[1]}')
+			self.geometry(f'{self.window_size[0]}x{self.window_size[1]}+{self.window_position[0]}+{self.window_position[1]}')
+			self.windowed = False
+			print(self.window_size, self.window_position, self.windowed)
