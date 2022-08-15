@@ -7,11 +7,20 @@ class GIFLabel(Label):
 	"""
 	A Label that displays images, and plays them if they are gifs
 	:im: A PIL Image instance or a string filename
+	Credit to u/social_nerdtastic on Reddit:
 	https://www.reddit.com/r/Tkinter/comments/kler90/how_can_i_use_a_gif_as_a_background_for_a/
 	"""
-	def __int__(self, image, *args, **kwargs):
+	def __init__(self, *args, **kwargs):
+		self.gifpath = None
+
+		if 'image' in kwargs:
+			self.gifpath = kwargs['image']
+			del kwargs['image']
+
 		super().__init__(*args, **kwargs)
-		self.load(image)
+
+		if self.gifpath:
+			self.load(self.gifpath)
 
 	def load(self, im):
 		if isinstance(im, str):

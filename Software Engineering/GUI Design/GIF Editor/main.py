@@ -3,7 +3,7 @@ from tkinter import ttk
 
 from window import TkEnhanced
 from editor_window import GIFCanvas
-from dev_additions import GIFLabel
+from additions import GIFLabel
 
 
 root = TkEnhanced()
@@ -11,50 +11,37 @@ root = TkEnhanced()
 root.title("GIF Editor")
 root.geometry('+300+300')
 root.iconbitmap('assets/GIF_E_128.ico')
-root.overrideredirect(True)
 
-# Custom Title Bar
-title_bar = Frame(root, bg='white', bd=1)
-title_bar.pack(expand=True, fill=X)
-
-title_label = Label(title_bar, text="GIF Editor")
-title_label.pack(side=LEFT, pady=4)
-
-exit_button = Button(title_bar, bg='red', command=root.destroy)
-exit_button.pack(side=RIGHT, pady=4, padx=4)
-
-window_button = Button(title_bar, bg='green', command=root.toggle_windowed)
-window_button.pack(side=RIGHT, pady=4, padx=4)
-
-minimize_button = Button(title_bar, bg='blue', command=root.minimize)
-minimize_button.pack(side=RIGHT, pady=4, padx=4)
-
-title_bar.bind('<B1-Motion>', root.move_app)
-title_bar.bind('<1>', root.set_move_offset)
-title_bar.bind('<Map>', root.frame_mapped)
-
-# Tab Container (Notebook)
-nbk = ttk.Notebook(root, width=400, height=400)
-nbk.pack(pady=10, expand=True)
-
+# ---------- Tab Container (Notebook) ----------
+nbk = ttk.Notebook(root)
+nbk.pack(pady=10, expand=True, fill='both')
+# Editor Tab
 editor_nbk = ttk.Frame(nbk)
 editor_nbk.pack(fill='both', expand=True)
-
+# Settings Tab
 settings_nbk = ttk.Frame(nbk)
 settings_nbk.pack(fill='both', expand=True)
 
-# Editor Tab Elements
-toolbar = Frame(editor_nbk, width=50, bg='red')
-toolbar.pack(fill='both', expand=True, side=LEFT)
-canvas = GIFCanvas(editor_nbk, bg="black")
+# ---------- Editor Tab Elements ----------
+# Toolbar: Tools are icon buttons
+toolbar = Frame(editor_nbk, width=75, bg='red')
+toolbar.pack(fill='y', expand=False, side=LEFT, pady=2)
+# Canvas Background
+canvas_bg = Frame(editor_nbk, bg='blue')
+canvas_bg.pack(fill='both', expand=True, padx=2, pady=2)
+# GIF Canvas
+canvas = GIFCanvas(canvas_bg, bg="black", width=400, height=400, highlightthickness=0)
 canvas.set_paint(True) # TODO Remove this once toolbar is implemented
-canvas.pack(fill='both', expand=True)
+canvas.pack(expand=True, anchor='center')
+# Timeline
+timeline = Frame(editor_nbk, height=50, bg='green')
+timeline.pack(fill='x', expand=False, padx=2)
 
-# Settings Tab Elements
+# ---------- Settings Tab Elements ----------
 ttk.Button(settings_nbk, text='Quit', command=root.destroy).grid(row=0, column=0)
-# GIFLabel(settings_nbk, image='assets/test.gif')
+GIFLabel(settings_nbk, image='assets/test.gif').grid(row=0, column=1)
 
-# Add Editor Tab to the Notebook
+# ---------- Add Editor Tab to the Notebook ----------
 nbk.add(editor_nbk, text='Editor')
 nbk.add(settings_nbk, text='Settings')
 
