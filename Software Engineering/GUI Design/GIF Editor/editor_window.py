@@ -38,7 +38,7 @@ class GIFCanvas(Canvas):
         import_filename = fd.askopenfilename()
         if import_filename.endswith('.gif'):
             im = Image.open(import_filename)
-            return im
+            # Update the timeline and canvas with the new image
         else:
             raise ValueError('Incorrect filename to open a gif')
 
