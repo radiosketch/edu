@@ -7,6 +7,7 @@ from additions import GIFLabel
 
 
 root = TkEnhanced()
+root.protocol('WM_DELETE_WINDOW', root.cleanup)
 
 root.title("GIF Editor")
 root.geometry('+300+300')
@@ -24,21 +25,22 @@ settings_nbk.pack(fill='both', expand=True)
 
 # ---------- Editor Tab Elements ----------
 # Toolbar: Tools are icon buttons
-toolbar = Frame(editor_nbk, width=75, bg='red')
+toolbar = Frame(editor_nbk, width=75, bg='#FFB7C3')
 toolbar.pack(fill='y', expand=False, side=LEFT, pady=2)
 # Canvas Background
-canvas_bg = Frame(editor_nbk, bg='blue')
+canvas_bg = Frame(editor_nbk, bg='black')
 canvas_bg.pack(fill='both', expand=True, padx=2, pady=2)
 # GIF Canvas
 canvas = GIFCanvas(canvas_bg, bg="black", width=400, height=400, highlightthickness=0)
-canvas.set_paint(True) # TODO Remove this once toolbar is implemented
+canvas.enable_paint(True) # TODO Remove this once toolbar is implemented
+canvas.enable_zoom(True)
 canvas.pack(expand=True, anchor='center')
 # Timeline
-timeline = Frame(editor_nbk, height=50, bg='green')
+timeline = Frame(editor_nbk, height=50, bg='#BCF4DE')
 timeline.pack(fill='x', expand=False, padx=2)
 
 # ---------- Settings Tab Elements ----------
-ttk.Button(settings_nbk, text='Quit', command=root.destroy).grid(row=0, column=0)
+ttk.Button(settings_nbk, text='Quit', command=root.cleanup).grid(row=0, column=0)
 GIFLabel(settings_nbk, image='assets/test.gif').grid(row=0, column=1)
 
 # ---------- Add Editor Tab to the Notebook ----------
@@ -86,5 +88,7 @@ nbk.add(settings_nbk, text='Settings')
 # 		save_all=True,
 # 		append_images=frames[1:],
 # 		loop=0)
+
+
 
 root.mainloop()
