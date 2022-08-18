@@ -64,7 +64,7 @@ class GIFCanvas(Canvas):
     def update_layer(self, index):
         pass
 
-    def set_layer_select(self, index):
+    def select_layer(self, index):
         pass
 
     def enable_paint(self, enable: bool):

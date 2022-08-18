@@ -5,9 +5,12 @@ from tkinter import *
 class TkEnhanced(Tk):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
+		self.temp_folder = 'temp'
+
+		if not os.path.exists(self.temp_folder):
+			os.mkdir(self.temp_folder)
 
 	def cleanup(self):
-		dir = 'temp'
-		for file in os.listdir(dir):
-			os.remove(os.path.join(dir, file))
+		for file in os.listdir(self.temp_folder):
+			os.remove(os.path.join(self.temp_folder, file))
 		self.destroy()
