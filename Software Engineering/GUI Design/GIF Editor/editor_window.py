@@ -135,28 +135,23 @@ class GIFCanvas(Canvas):
         zoom = self.zoom['val']
 
         self.update()
-
         width = zoom * math.ceil(self.winfo_width() / zoom)
         height = zoom * math.ceil(self.winfo_height() / zoom)
 
         u_width = math.ceil(width / zoom)
         u_height = math.ceil(height / zoom)
 
-        img = Image.new(mode='RGB', size=(u_width, u_height))
-        pixels = img.load()
-
         lg = 255 // 3 # Light Grey
         dg = 255 // 2 # Dark Grey
+
+        img = Image.new(mode='RGB', size=(u_width, u_height), color=(dg, dg, dg))
+        pixels = img.load()
+
+        k = 0
         for i in range(img.size[0]):
-            for j in range(img.size[1]):
+            for j in range(k, img.size[1], 2):
                 pixels[i, j] = (lg, lg, lg)
-                temp = lg
-                lg = dg
-                dg = temp
-            if img.size[1] % 2 == 0:
-                temp = lg
-                lg = dg
-                dg = temp
+            k = not k
 
         img = img.resize((width, height), Image.Resampling.BOX)
         img.save(self.temp['background'])
