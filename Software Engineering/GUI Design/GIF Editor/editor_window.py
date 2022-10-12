@@ -32,13 +32,13 @@ class GIFCanvas(Canvas):
             'size': 3,
             'color': '#fffffffff',
             'opacity': 1.0,
-            'previous position': None # For interpolating between positions
+            'previous position': None  # For interpolating between positions
         }
 
         # Rectangle Select Configs and Data
         self.rect_sel_info = {
             'events': ['<B1-Motion>', '<1>'],
-            'points': None, # (x1, y1, x2, y2)
+            'points': None,  # (x1, y1, x2, y2)
             'enabled': False,
         }
 
