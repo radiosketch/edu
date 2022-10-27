@@ -1,5 +1,5 @@
 # Google Sheets Site
-### Click [here](https://script.google.com/macros/s/AKfycbza9GaMUrXKskeqLeldy_xniwYI1aCqs9Srr1N0DZcchRa-ejkcdkqLk4vRhIZfrf4d/exec) to go to the app.  
+### Click [here](https://script.google.com/macros/s/AKfycbyRWEaKXjAX7smo24rdulKKuMC26G8DMqfnh2gnzI7KRmjG4p86nmvaWru5-eU0crtO/exec) to go to the app.  
 
 Interact with a [Google Sheets database](https://docs.google.com/spreadsheets/d/1nHQIyAN-riwfkB8p25fGIvmPHKX-j4-6vXJGR_Mlsfs/edit#gid=1302769330) using a friendly Vuetify-based frontend.  
 
