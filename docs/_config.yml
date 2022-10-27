@@ -21,7 +21,7 @@
 title: rad1osketxh
 email: officialradiosketch@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This is my portfolio blog! From here you can look at the projects I've made available.
+  Portfolio blog where you can look at the projects I've made available.
 baseurl: "/edu" # the subpath of your site, e.g. /blog
 url: "https://radiosketch.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 101prairiedogs
@@ -33,6 +33,7 @@ twitch_username: rad1osketxh
 # theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 # Exclude from processing.
 # The following items will not be processed, by default.
