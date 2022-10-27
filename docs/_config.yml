@@ -26,6 +26,7 @@ baseurl: "/edu" # the subpath of your site, e.g. /blog
 url: "https://radiosketch.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 101prairiedogs
 github_username: radiosketch
+twitch_username: rad1osketxh
 
 # Build settings
 # Disabled minima theme in favor of a custom one based on minima
