@@ -10,7 +10,7 @@ To help solve this issue, I'm working on this application in my free time!
 
 [Link to the Project Page](https://github.com/radiosketch/edu/tree/master/Software%20Engineering/GUI%20Design/GIF%20Editor)
 
-The Application
+The Application  
 ![The Application](https://cdn.discordapp.com/attachments/513555424247676929/1035363567702114354/unknown.png)  
 
 A Gif Edited using Python as a proof of concept:  
