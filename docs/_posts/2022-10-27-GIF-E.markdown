@@ -1,0 +1,15 @@
+---
+layout: post
+title:  "GIF Editor"
+categories: 
+excerpt: A work in progress made with Python, Tkinter, and the Pillow Imaging Library
+---
+GIF Editor was inspired by my love of posting memes for my friends. Making a gif that would land a punchline was always difficult to do in the moment because making a funny edit on a gif takes too much time.  
+
+To help solve this issue, I'm working on this application in my free time!  
+
+The Application
+![The Application](https://cdn.discordapp.com/attachments/513555424247676929/1035363567702114354/unknown.png)  
+
+A Gif Edited using Python as a proof of concept:  
+![A GIF](https://cdn.discordapp.com/attachments/513555424247676929/999828879382421555/out2.gif)  
