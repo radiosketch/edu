@@ -13,6 +13,6 @@ excerpt: Yeah, I'm a full stack developer 😎
 
 ![Image of Site](https://cdn.discordapp.com/attachments/513555424247676929/1035358405788971098/sheets_site_10_27_2022.PNG)
 
-&emsp;Later versions will make it easier for select and edit the cells related to each line item. Rather than typing the index of the cell in the database in order to edit it, the user should be able to select items from a dropdown and be able to edit the available fields.  
+&emsp;Later versions will make it easier to select and edit the cells related to each line item. Rather than typing the index of the cell in the database in order to edit it, the user should be able to select items from a dropdown and be able to edit the available fields.  
 
 
