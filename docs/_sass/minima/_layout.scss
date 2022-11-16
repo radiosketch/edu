@@ -120,6 +120,13 @@
   list-style: none;
   margin-left: 0;
 }
+.social-media-list li {
+  display: inline;
+}
+.svg-icon {
+  transform: scale(2);
+  margin: 10px;
+}
 
 .footer-col-wrapper {
   @include relative-font-size(0.9375);
@@ -178,6 +185,7 @@
 .page-content {
   padding: $spacing-unit 0;
   flex: 1;
+  background-color: rgba(5, 0, 14, 0.5);
 }
 
 .page-heading {

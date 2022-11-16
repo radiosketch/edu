@@ -6,9 +6,9 @@ excerpt: A work in progress made with Python, Tkinter, and the Pillow Imaging Li
 ---
 GIF Editor was inspired by my love of posting memes for my friends. Making a gif that would land a punchline was always difficult to do in the moment because making a funny edit on a gif takes too much time.  
 
-To help solve this issue, I'm working on this application in my free time!  
+To help solve this issue, I'm working on this application in my free time! The existing program is not fleshed-out, but plans for features can be found [here.](https://github.com/radiosketch/edu/blob/master/Software Engineering/GUI Design/GIF Editor/developer_notes.ipynb)
 
-[Link to the Project Page](https://github.com/radiosketch/edu/tree/master/Software%20Engineering/GUI%20Design/GIF%20Editor)
+[Link to the Project README](https://github.com/radiosketch/edu/tree/master/Software%20Engineering/GUI%20Design/GIF%20Editor)
 
 The Application  
 ![The Application](https://cdn.discordapp.com/attachments/513555424247676929/1035363567702114354/unknown.png)  
