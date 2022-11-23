@@ -1,0 +1,16 @@
+#canvas {
+    background: #7392B7;
+    border: 2px solid #759EB8;
+    width: 80%;
+    height: 50%;
+}
+
+body {
+    background: #D8E1E9;
+}
+
+.center {
+    display: block;
+    margin: auto;
+    padding: 10px;
+}
