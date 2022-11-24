@@ -13,4 +13,9 @@ This app makes use of App Scripts provided by Google, which serves as the backen
 ## Vuetify
 ### Documentation for Vuetify can be found [here](https://vuetifyjs.com/en)  
 
-As I am most familiar with Vuetify, I will be using it to make the frontend for this app.
+As I am most familiar with Vuetify, I will be using it to make the frontend for this app.  
+
+# Demo App  
+While I work, I need a place to make simpler versions of some ideas before I can implement them into my final product. This folder also contains some code for a basic webapp made with javascript that utilizes the Canvas2D to draw blueprints for later use in the pipeline.  
+
+Run the code yourself by hosting a local server from this folder.

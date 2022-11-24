@@ -9,4 +9,6 @@ body {
 
 .center {
     display: block;
+    margin: auto;
+    margin-top: 25px;
 }
