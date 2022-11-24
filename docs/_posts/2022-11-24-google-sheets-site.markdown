@@ -15,4 +15,12 @@ excerpt: Yeah, I'm a full stack developer 😎
 
 &emsp;Later versions will make it easier to select and edit the cells related to each line item. Rather than typing the index of the cell in the database in order to edit it, the user should be able to select items from a dropdown and be able to edit the available fields.  
 
+## Intuitive Estimates with Blueprints  
+
+&emsp;When inspecting a crawlspace, measurements need to be taken to calculate material costs and estimate the amount of labor required to complete the job. I propose a method of making simple blueprints since making the calculations by hand is slow and unintuitive to perform in the field. Shown below is a current view of the demo for this idea.
+
+![Image of Crawlspace Calculator Demo](https://cdn.discordapp.com/attachments/513555424247676929/1045225340882141214/image.png)  
+
+&emsp;Eventually the user will be able to add measurements to the line segments they draw onscreen. The program can then calculate Perimeter and Area on its own, and send the values to the spreadsheet which calculates material usage and estimates billable hours.
+
 
