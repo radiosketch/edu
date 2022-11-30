@@ -10,6 +10,7 @@ var STARTINGID = 0;
 var CANVAS = null;
 var CTX = null;
 var DRAWHANDLER = null;
+var GRID = null;
 var SNAPTOGRID = true;
 var SNAPTOLINES = true;
 var UNDOHISTORY = [];
@@ -116,6 +117,21 @@ class Grid {
         this.showLines = showLines;
     }
 
+    getNearest(point) {
+        /**
+         * Get the nearest gridpoint to the point provided
+         * @param {Point} point A point with a known position
+         * @return {Point} The point with updated position
+         */
+        const round = (num) => {
+            return Math.round(num / this.size) * this.size;
+        }
+
+        point.x = round(point.x);
+        point.y = round(point.y);
+        return point;
+    }
+
     draw() {
         if (this.showPoints) {
             this.points.forEach(point => point.draw());
@@ -170,15 +186,22 @@ window.onload = function () {
     CANVAS = document.getElementById('canvas');
     CTX = CANVAS.getContext('2d');
 
-    // Initial EventListeners
-    CANVAS.addEventListener('click', startLine);
-    document.onkeydown = keyPress;
+    // Resize the canvas to appear responsive
+    var heightRatio = 0.6;
+    CANVAS.height = CANVAS.width * heightRatio;
 
     // The DRAWHANDLER refreshes the screen when a new element is added
     // DRAWHANDLER also stores a list of existing elements
     DRAWHANDLER = new DrawHandler();
-    var grid = new Grid(CANVAS, 50);
-    DRAWHANDLER.pushPersistent(grid);
+
+    // Add a persistent grid to the canvas
+    GRID = new Grid(CANVAS, 50);
+    DRAWHANDLER.pushPersistent(GRID);
+
+    // Initial EventListeners
+    CANVAS.addEventListener('click', startLine);
+    CANVAS.addEventListener('mousemove', suggestPoint);
+    document.onkeydown = keyPress;
 }
 
 /**
@@ -223,46 +246,63 @@ function getMousePos(canvas, evt) {
     };
 }
 
+function suggestPoint(evt) {
+    var pos = getMousePos(CANVAS, evt);
+    var point = new Point(pos, 3, 'fdfdff');
+    if (SNAPTOGRID) point = GRID.getNearest(point);
+    DRAWHANDLER.update();
+    point.draw();
+}
+
 function startLine(evt) {
     // TODO Snap to the nearest point of an existing line; if within a threshold
     // TODO Snap to the nearest point on a grid, if grid snapping is enabled
     var pos = getMousePos(CANVAS, evt);
-    var line = new Line(new Point(pos), new Point(pos), 8);
+    var point = new Point(pos);
+    if (SNAPTOGRID) point = GRID.getNearest(point);
+    var line = new Line(point, new Point(pos), 8);
     CANVAS.adjustingLine = line;
     DRAWHANDLER.push(line);
     UNDOHISTORY = [];
 
+    // Update EventListeners to listen for the next step
     CANVAS.removeEventListener('click', startLine);
+    CANVAS.removeEventListener('mousemove', suggestPoint)
     CANVAS.addEventListener('mousemove', adjustLine);
     CANVAS.addEventListener('click', finishAdjustingLine);
 }
 
-function cancelLine(evt) {
+function cancelLine() {
+    if (CANVAS.adjustingLine == null) return
     if (!CANVAS.adjustingLine.completed) {
+        // Remove the uncompleted line being adjusted
         DRAWHANDLER.pop();
+        // Update EventListeners to idle
         CANVAS.removeEventListener('mousemove', adjustLine);
         CANVAS.removeEventListener('click', finishAdjustingLine);
+        CANVAS.addEventListener('mousemove', suggestPoint);
         CANVAS.addEventListener('click', startLine);
     }
+    CANVAS.adjustingLine = null;
 }
 
 function adjustLine(evt) {
     var pos = getMousePos(CANVAS, evt);
+    if (SNAPTOGRID) pos = GRID.getNearest(pos);
     CANVAS.adjustingLine.p2.x = pos.x;
     CANVAS.adjustingLine.p2.y = pos.y;
     DRAWHANDLER.update();
 }
 
 function finishAdjustingLine(evt) {
-    var pos = getMousePos(CANVAS, evt);
-    // TODO Snap to the nearest point of an existing line; if within a threshold
-    // TODO Snap to the nearest point on a grid, if grid snapping is enabled
     CANVAS.adjustingLine.completed = true;
     // TODO Add a textbox to the center of the line for length
     // Attach this textbox to edit the CANVAS.adjustingLine.length
     DRAWHANDLER.update();
 
+    // Update EventListeners to idle
     CANVAS.removeEventListener('mousemove', adjustLine);
     CANVAS.removeEventListener('click', finishAdjustingLine);
+    CANVAS.addEventListener('mousemove', suggestPoint);
     CANVAS.addEventListener('click', startLine);
 }
