@@ -5,16 +5,6 @@ Interact with a [Google Sheets database](https://docs.google.com/spreadsheets/d/
 
 This site is incorporating a Google Sheet I made during my time at MoldX Inc. The project shown to you here does not contain any sensitive information, but retains the same functionality.  
 
-## App Scripts
-### The code for this project can be found and edited [here](https://script.google.com/u/0/home/projects/1jF6pSyax4-pmmergljoftp1ux0U-cIvkHVJ3yVccJzJyA1FHYaTx5EbS/edit)  
-
-This app makes use of App Scripts provided by Google, which serves as the backend for my site.
-
-## Vuetify
-### Documentation for Vuetify can be found [here](https://vuetifyjs.com/en)  
-
-As I am most familiar with Vuetify, I will be using it to make the frontend for this app.  
-
 # Demo App  
 While I work, I need a place to make simpler versions of some ideas before I can implement them into my final product. This folder also contains some code for a basic webapp made with javascript that utilizes the Canvas2D to draw blueprints for later use in the pipeline.  
 
