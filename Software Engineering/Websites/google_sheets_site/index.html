@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     <script src="app.js"></script>
     <script src="debug.js"></script>
     <title>House Perimeter Calculator</title>
@@ -15,6 +16,36 @@
     <strong>Click or Tap anywhere on the blueprint to start a line segment; tap again to complete the segment.</strong>
     <br><br>
     <strong>Press Ctrl+Z to Undo. Ctrl+Y to Redo. Press Escape to cancel making a line.</strong>
-    <canvas class="center" id="canvas" width="1080">Please Enable Javascript</canvas>
+    <div class="sidebar">
+        <!-- Tool Toggle Buttons -->
+        <div class="tooltip">
+            <button id="pointerbtn" class="btn"><i class="fas fa-mouse-pointer"></i> </button>
+            <span class="tooltiptext">Select</span>
+        </div>
+
+        <div class="tooltip">
+            <button id="selectbtn" class="btn"><i class="fas fa-square"></i> </button>
+            <span class="tooltiptext">Draw</span>
+        </div>
+
+        <div class="tooltip">
+            <button id="zonebtn" class="btn"><i class="fas fa-vector-square"></i> </button>
+            <span class="tooltiptext">Zone</span>
+        </div>
+
+        <div class="tooltip">
+            <button id="movebtn" class="btn"><i class="fas fa-arrows-alt"></i> </button>
+            <span class="tooltiptext">Move</span>
+        </div>
+
+        <div class="tooltip">
+            <button id="clearbtn" class="btn"><i class="fas fa-trash"></i> </button>
+            <span class="tooltiptext">Clear</span>
+        </div>
+    </div>
+    <div class="container">
+        <canvas id="canvas" width="1080">Please Enable Javascript</canvas>
+    </div>
+    
 </body>
 </html>

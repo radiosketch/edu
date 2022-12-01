@@ -41,10 +41,15 @@ class Point {
         this.ctx.lineWidth = this.size;
         this.ctx.strokeStyle = this.color;
         this.ctx.fillStyle = this.color;
-        this.ctx.beginPath();
-        this.ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI*2);
-        this.ctx.fill();
-        this.ctx.stroke();
+
+        // Draw Square
+        this.ctx.fillRect(this.x - this.size*2, this.y - this.size*2, this.size*4, this.size*4);
+
+        // Draw Circle
+        // this.ctx.beginPath();
+        // this.ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI*2);
+        // this.ctx.fill();
+        // this.ctx.stroke();
     }
 }
 
@@ -79,6 +84,50 @@ class Line {
         this.ctx.lineTo(this.p2.x, this.p2.y);
         this.ctx.stroke();
     }
+}
+
+class Polygon {
+    constructor() {
+        console.log(arguments);
+        // TODO Create a Polygon from any number of lines
+        // As long as they are all connected
+    }
+
+    simplify() {
+        // Convert pairs of lines that have no change in angle between them
+        // Into a single line of length SUM(l1, l2)
+        // Starting at l1.p1 ending at l2.p2
+    }
+
+    setScale() {
+        // Set the scale of pixels to (ft, meters, inches, centimeters, etc..)
+    }
+
+    promptFootprintScale() {
+        // Prompt the user for the width & height of the polygon's overall footprint
+        // and set the scale accordingly
+    }
+
+    promptLengthScale(lineID) {
+        // Prompt the user for the length of a particular line of the polygon
+        // and set the scale accordingly
+    }
+
+    area() {
+        // Find the area confined by the polygon
+        // Only if there is a known scale
+        // If scale has not been set, prompt it.
+        // Keep track of zone types, and sum their areas separately
+        // Return a sum for each type, and total across every type
+    }
+
+    perimeter() {
+        // Find the perimeter of the polygon
+        // Keep track of line types, and sum their perimeters separately
+        // Return a sum for each type, and a total across every type
+    }
+
+
 }
 
 class Grid {
@@ -187,7 +236,7 @@ window.onload = function () {
     CTX = CANVAS.getContext('2d');
 
     // Resize the canvas to appear responsive
-    var heightRatio = 0.6;
+    var heightRatio = 0.5;
     CANVAS.height = CANVAS.width * heightRatio;
 
     // The DRAWHANDLER refreshes the screen when a new element is added
