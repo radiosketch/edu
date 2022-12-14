@@ -11,6 +11,7 @@ async def minesweeper():
     '''
     Start a game of minesweeper!
     TODO https://discordpy.readthedocs.io/en/stable/
+    TODO Update bot token: https://discord.com/developers/applications/1052692433231691817/bot
     '''
 
 
